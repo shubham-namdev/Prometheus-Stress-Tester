@@ -38,13 +38,7 @@ tar xzvf StressTester1.1.tar.gz
 
 ### Setup
 
-1. Navigate to the extracted directory:
-
-```bash
-cd Prometheus-Stress-Tester
-```
-
-2. Run `setup.py` to set up the Prometheus stress testing environment:
+Run `setup.py` to set up the Prometheus stress testing environment:
 
 ```bash
 python3 setup.py

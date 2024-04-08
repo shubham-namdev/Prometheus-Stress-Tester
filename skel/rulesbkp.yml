@@ -1,0 +1,55 @@
+groups:
+- name: AllInstances
+  rules:
+  - alert : InstanceDown
+    # Consition for alerting
+    expr: up == 0
+    for: 1m
+    # Annotation - additional information labes to store more info
+    annotations:
+      title: 'Instance is Down'
+      description: 'Alert: A NODE has been down for more than 1 minute.'
+    # Labels - additional labels to be attached to the alert
+    labels:
+      severity: 'critical'
+- name: MemoryAlert
+  rules:
+  - alert : HighMemoryUtilization
+    expr: node_memory_MemFree_bytes < 5e+8
+    for: 15s
+    labels:
+      severity: warning
+    annotations:
+      summary: 'High Memory Utilization'
+      description: 'Less than 500MB memory left'
+- name: HighCPUUsage
+  rules:
+  - alert: HighCPUUtilization
+    expr: (100 - (avg by (instance) (irate(node_cpu_seconds_total{job="node_exporter",mode="idle"}[1m])) * 100)) > 50
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: 'High CPU usage'
+      description: 'ALERT: HIGH CPU USAGE : More than 50% for 1 minute'
+
+- name: LowDiskSpace
+  rules:
+  - alert: LowDiskSpace
+    expr: node_filesystem_avail_bytes{mountpoint="/"} < 10 * 1024 * 1024 * 1024
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: 'Low Dsk Space Remaining'
+      description: 'Free space Below 10G'
+- name: HighNetworkTraffic
+  rules:
+  - alert: HighNetworkTraffic
+    expr: sum(rate(node_network_receive_bytes_total[1m]))> 10e6
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: 'High network traffic on host'
+      description: 'Inbound network traffic on host has exceeded 10Mbps'

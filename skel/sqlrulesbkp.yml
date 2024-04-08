@@ -1,0 +1,26 @@
+groups:
+- name: SelectOverload
+  rules:
+  - alert : ExcessiveSelectCommands
+    expr: rate(mysql_global_status_commands_total{command='select'}[1m]) >= 0.21
+    for: 15s
+    annotations:
+      summary: 'Excessive Select Queries'
+      description: 'Select queries rate exceeded 20% in last minute'
+- name: HighConnectAbortRate
+  rules:
+  - alert: HighConnectAbortRate
+    expr: rate(mysql_global_status_aborted_connects[1m]) > 30
+    for: 1m
+    annotations:
+      summary : 'High Connection Abortion Rate'
+      description: 'More than 30 connections are being aborted per minute'
+- name: HighFetchingRate
+  rules:
+  - alert: HighFetchingRate
+    expr: rate(mysql_global_status_bytes_sent[1m]) > 15000
+    for: 1m
+    annotations:
+      summary: 'High Data Fetching Rate'
+      description: 'Data Fetching Rate Exceeded 15Kbps for the last 1 minute'
+

@@ -1,0 +1,15 @@
+{
+    "ip": {
+        "node_exporter": "192.168.75.88",
+        "mysql": ""
+    },
+    "paths": {
+        "rulesYML": "/etc/prometheus/rules.yml",
+        "sqlrulesYML": "/etc/prometheus/sqlrules.yml",
+        "alertmanagerYML": "/etc/alertmanager/alertmanager.yml",
+        "prometheusYML": "/etc/prometheus/prometheus.yml"
+    },
+    "link": {
+        "github": "https://github.com/shubham-namdev/Prometheus-Stress-Tester"
+    }
+}

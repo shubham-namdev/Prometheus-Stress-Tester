@@ -43,6 +43,8 @@ Run `setup.py` to set up the Prometheus stress testing environment:
 ```bash
 python3 setup.py
 ```
+After the initial setup, goto `<your_ip>:9090` to access Prometheus Server.
+Here you can view and manage the Alerts.
 
 ### Running the Application
 

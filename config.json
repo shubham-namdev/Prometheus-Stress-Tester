@@ -1,6 +1,6 @@
 {
     "ip": {
-        "node_exporter": "192.168.75.88",
+        "node_exporter": "",
         "mysql": ""
     },
     "paths": {
